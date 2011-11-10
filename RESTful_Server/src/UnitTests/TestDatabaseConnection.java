@@ -4,14 +4,14 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import Server.DBconnectionHardCoded;
+import DataBase.DBconnectionHardCoded;
 
 public class TestDatabaseConnection {
 
 	DBconnectionHardCoded dBConn;
 	
 	@Test
-	public void test() {
+	public void testDBconnection() {
 		
 		try{
 		dBConn = new DBconnectionHardCoded();

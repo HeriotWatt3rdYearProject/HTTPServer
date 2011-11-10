@@ -11,21 +11,26 @@ public class URLFetcher {
     // format output and http response
     public String fetch(URL url){
 
+    	StringBuilder stb = new StringBuilder();
+    	
     	try{
        
-        URLConnection yc = url.openConnection();
-        BufferedReader in = new BufferedReader(
-                                new InputStreamReader(
-                                yc.getInputStream()));
-        String inputLine;
+        //URLConnection yc = url.openConnection();
+        InputStream in  = url.openStream();
+        DataInputStream dis = new DataInputStream(new BufferedInputStream(in));
 
-        while ((inputLine = in.readLine()) != null) 
-            System.out.println(inputLine);
+        String inputLine;
+        
+        while ((inputLine = dis.readLine()) != null) 
+        
+        stb.append(inputLine+"\n");
         in.close();
         
     	}
     	catch(Exception e){
-    		System.out.println("failed to get webpage");
+    		return null;
     	}
+    		return(stb.toString());
+    	
     }
 }
