@@ -3,7 +3,9 @@ package DataBase;
 	import java.sql.DriverManager;
 	import java.sql.ResultSet;
 	import java.sql.SQLException;
-	import java.sql.Statement;
+import java.sql.Statement;
+
+import DataStore.DataStore;
 
 
 	public class DBconnectionHardCoded {
@@ -13,11 +15,15 @@ package DataBase;
 	        Statement st = null;
 	        ResultSet rs = null;
 
-	        String url = "jdbc:mysql://46.137.159.35:3306/mysql";
+	        String url = "jdbc:mysql://******:3306/mysql";
 	        String user = "JavaApp";
 	        String password = "JavaApp";
+	        
+	      
 
 	        public DBconnectionHardCoded(){
+	        	
+
 	        
 	        try {
 	            con = DriverManager.getConnection(url, user, password);
