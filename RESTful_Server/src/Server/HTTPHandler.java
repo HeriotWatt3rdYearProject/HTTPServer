@@ -9,6 +9,10 @@ import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
+//threaded class to handle the http requests as they come in, Datastore (I hope?) will be syncronised 
+//with the others when I test.
+//Need to refactor the methods into a smaller methods.
+
 public class HTTPHandler implements HttpHandler {
 
 	private DataStore ds;

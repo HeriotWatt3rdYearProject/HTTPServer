@@ -2,6 +2,9 @@ package DataStore;
 
 import java.util.HashSet;
 
+//Wrapper class for the request, inner class to handle the K,V pairs
+//Look at using hash map and remove the set although need to ensure no duplication from parsed API request.
+
 public class Request {
 
 	private HashSet <Variable> request;

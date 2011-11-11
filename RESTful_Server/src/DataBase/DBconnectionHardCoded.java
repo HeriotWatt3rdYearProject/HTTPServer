@@ -7,6 +7,8 @@ import java.sql.Statement;
 
 import DataStore.DataStore;
 
+//Test class to check connection to DB, runs simple query and throws exception.
+//Needs a serious re-factor once finished and tested the current system
 
 	public class DBconnectionHardCoded {
 
@@ -15,6 +17,8 @@ import DataStore.DataStore;
 	        Statement st = null;
 	        ResultSet rs = null;
 
+	        // pass connection string via text file or XML config file
+	        
 	        String url = "jdbc:mysql://******:3306/mysql";
 	        String user = "JavaApp";
 	        String password = "JavaApp";
@@ -23,7 +27,7 @@ import DataStore.DataStore;
 
 	        public DBconnectionHardCoded(){
 	        	
-
+	        //test class just now, needs to return connection back
 	        
 	        try {
 	            con = DriverManager.getConnection(url, user, password);

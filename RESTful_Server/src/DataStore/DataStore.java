@@ -3,6 +3,10 @@ package DataStore;
 import java.util.*;
 import java.util.concurrent.*;
 
+//Holds the queues for communication between threads, need to write classes to monitor the size
+//of the queues to ensure timely response. Might be an Idea to create a cache too.
+//!! NEEDS TESTED !!
+
 public class DataStore {
 	private Queue requestQueue = new ConcurrentLinkedQueue();
 	private Queue responseQueue = new ConcurrentLinkedQueue();

@@ -2,6 +2,9 @@ package DataStore;
 
 import java.sql.ResultSet;
 
+//wrapper class for the response, may look at formating the result before sending back to HTTP
+//perhaps write a formatting tool class
+
 public class Response {
 
 	private ResultSet rs;

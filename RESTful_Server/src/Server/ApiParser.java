@@ -4,6 +4,9 @@ import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+//parses the URL requested and splits the variables and returns a hash map
+//should look at changing to a hashset?
+
 public class ApiParser {
 
 	public ApiParser(){}

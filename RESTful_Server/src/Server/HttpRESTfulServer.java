@@ -6,6 +6,9 @@ import java.util.concurrent.Executors;
 import DataBase.DatabaseWorker;
 import com.sun.net.httpserver.HttpServer;
 
+//this is the main thread called by the main.class and spawns the other threads. 
+//creates the top level datastore class
+
 public class HttpRESTfulServer extends Thread {
 
 	private final DataStore.DataStore dataStore;
