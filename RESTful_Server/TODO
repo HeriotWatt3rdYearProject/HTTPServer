@@ -2,7 +2,7 @@ TO DO.....
 
 Provision test database, either new normalised schema or old flat schema
 write Unit tests
-look at implementing a cache
+look at implementing a cache 
 decide on API specification GET/POST details.
 Create SQL
 test load and performance

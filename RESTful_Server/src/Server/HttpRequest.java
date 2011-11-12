@@ -34,6 +34,8 @@ public class HttpRequest implements HttpHandler {
 
 		long requestNumber = ds.getThreadNumber(); 
 		
+		long startTime = System.currentTimeMillis();
+		
 		String requestMethod = exchange.getRequestMethod();
 		String request = exchange.getProtocol();
 		
@@ -50,16 +52,18 @@ public class HttpRequest implements HttpHandler {
 		if (parseResult instanceof Request) {
 
 			ds.putRequest((Request)parseResult);
-			System.out.println("put request from httpHandler  = " + requestNumber);
+			//System.out.println("put request from httpHandler  = " + requestNumber);
 			
 			boolean gotResponse = false;
 			while(!gotResponse){
 				
 				if(ds.peekResponse() == requestNumber){
 					
+					long endTime = System.currentTimeMillis();
+					
 					Response resp = ds.getResponse();
 					gotResponse = true;
-					System.out.println("Got response from DBworker  = " + requestNumber);
+					System.out.println("Got response from DBworker  = " + requestNumber + "Response time = " + ((endTime - startTime)/1000));
 					s=Long.toString(requestNumber);
 					
 				}

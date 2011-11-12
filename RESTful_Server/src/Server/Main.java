@@ -18,7 +18,9 @@ public class Main {
 			boss = new HttpRESTfulServer();
 			boss.start();
 		} catch (IOException e) {
-			SendMail sm = new SendMail(args[0],"API problem, exception caught but shutting down. Exception = "  + e.getMessage());
+			if(!args[1].equals("testing")){
+				SendMail sm = new SendMail(args[0],"API problem, exception caught but shutting down. Exception = "  + e.getMessage());
+			}
 			e.printStackTrace();
 		}
 	

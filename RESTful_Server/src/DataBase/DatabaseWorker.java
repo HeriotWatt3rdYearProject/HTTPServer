@@ -32,19 +32,19 @@ public class DatabaseWorker extends Thread {
 		Random rand = new Random();
 		long owner = req.getRequestNumber();
 		
-		System.out.println("got request from httpHandler  = " + owner +"  "+this.getId());
+		//System.out.println("got request from httpHandler  = " + owner +"  "+this.getId());
 		
-		try {
-			Thread.sleep(rand.nextInt(5000));
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			//Thread.sleep(rand.nextInt(5000));
+//		} catch (InterruptedException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		ResultSet rs = null;
 
 		Response resp = new Response(rs, owner);
 		ds.putResponse(resp);
-		System.out.println("put response from dbworker  = " + owner +"  "+this.getId());
+		//System.out.println("put response from dbworker  = " + owner +"  "+this.getId());
 	
 	}
 	
