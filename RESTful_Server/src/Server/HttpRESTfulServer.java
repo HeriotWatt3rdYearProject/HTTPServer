@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.util.concurrent.Executors;
 import DataBase.DatabaseWorker;
+import DataStore.DataStore;
+
 import com.sun.net.httpserver.HttpServer;
 
 //this is the main thread called by the main.class and spawns the other threads. 
@@ -18,7 +20,7 @@ public class HttpRESTfulServer extends Thread {
 	 * @uml.property  name="dataStore"
 	 * @uml.associationEnd  multiplicity="(1 1)"
 	 */
-	private final DataStore.DataStore dataStore;
+	private final DataStore dataStore;
 	/**
 	 * @uml.property  name="server"
 	 * @uml.associationEnd  multiplicity="(1 1)"
@@ -32,7 +34,7 @@ public class HttpRESTfulServer extends Thread {
 
 	public HttpRESTfulServer() throws IOException {
 
-		dataStore = new DataStore.DataStore();
+		dataStore = new DataStore();
 		InetSocketAddress addr = new InetSocketAddress(8080);
 		server = HttpServer.create(addr, 0);
 		server.createContext("/", new HTTPHandler(dataStore));

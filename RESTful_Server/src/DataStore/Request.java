@@ -6,39 +6,38 @@ import java.util.HashSet;
 //Look at using hash map and remove the set although need to ensure no duplication from parsed API request.
 
 /**
- * @author  lewismclean
+ * @author lewismclean
  */
-public class Request {
+public class Request  {
 
-	/**
-	 * @uml.property  name="request"
-	 * @uml.associationEnd  multiplicity="(0 -1)" inverse="this$0:DataStore.Request$Variable"
-	 */
-	private HashSet <Variable> request;
-	
-	public Request(){
+	private long requestNumber;
+
+	private HashSet<Variable> request;
+
+	public Request(long requestNumber) {
 		request = new HashSet();
+		this.requestNumber = requestNumber;
 	}
-	
-	public void addVariable(String key, String value, int threadNumber){
-		
-		Variable temp = new Variable(key, value, threadNumber);
+
+
+	public void addVariable(String key, String value) {
+
+		Variable temp = new Variable(key, value);
 		request.add(temp);
-		
+
 	}
-	
-	
-	class Variable{
-		public String key;
-		public String value;
-		public int threadNumber;
-		
-		public Variable(String key, String value, int threadNumber){
-			this.key = key;
-			this.value = value;
-			this.threadNumber = threadNumber;
-			
-		}
+
+	public long getRequestNumber() {
+
+		return requestNumber;
+
 	}
-	
+
+
+	public boolean isEmpty() {
+
+		return request.isEmpty();
+
+	}
+
 }

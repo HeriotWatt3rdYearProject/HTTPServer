@@ -4,7 +4,10 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URI;
 import java.util.HashMap;
+
 import DataStore.DataStore;
+import DataStore.Request;
+import DataStore.Response;
 import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
@@ -18,10 +21,7 @@ import com.sun.net.httpserver.HttpHandler;
  */
 public class HTTPHandler implements HttpHandler {
 
-	/**
-	 * @uml.property  name="ds"
-	 * @uml.associationEnd  multiplicity="(1 1)"
-	 */
+
 	private DataStore ds;
 
 	public HTTPHandler(DataStore ds) {
@@ -32,7 +32,7 @@ public class HTTPHandler implements HttpHandler {
 
 	public void handle(HttpExchange exchange) throws IOException {
 
-		long threadNumber = ds.getThreadNumber(); 
+		long requestNumber = ds.getThreadNumber(); 
 		
 		String requestMethod = exchange.getRequestMethod();
 		String request = exchange.getProtocol();
@@ -40,15 +40,30 @@ public class HTTPHandler implements HttpHandler {
 		//get variables and parse into K,V pairs
 		URI str = exchange.getRequestURI();
 		ApiParser aParse = new ApiParser();
-		Object parseResult = aParse.parse(str.toASCIIString());
+		Object parseResult = aParse.parse(str.toASCIIString(), requestNumber);
 
 		// remove
 		String s = null;
 
 		if (parseResult instanceof String)
 			s = (String) parseResult;
-		if (parseResult instanceof HashMap) {
+		if (parseResult instanceof Request) {
 
+			ds.putRequest((Request)parseResult);
+			
+			boolean gotResponse = false;
+			while(!gotResponse){
+				
+				if(ds.peekResponse() == requestNumber){
+					
+					Response resp = ds.getResponse();
+					gotResponse = true;
+
+				}
+				
+			}
+			
+			
 		}
 
 		System.out.println(request + "   " + requestMethod + "    " + str);
@@ -57,6 +72,8 @@ public class HTTPHandler implements HttpHandler {
 		//
 		//
 		//
+		
+		
 		
 		
 		// return request part - REFACTOR to method with args..

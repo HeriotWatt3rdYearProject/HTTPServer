@@ -17,28 +17,32 @@ public class Response {
 	/**
 	 * @uml.property  name="threadNumber"
 	 */
-	private int threadNumber;
+	private long threadNumber;
 	
-	public Response(ResultSet rs, int threadNumber) throws Exception{
+	public Response(ResultSet rs, long threadNumber) {
 		
-		if(rs != null || rs.getFetchSize() == 0){
+		//testing the code with blank resultsets
+		//if(rs != null || rs.getFetchSize() == 0){
 		
 		this.rs = rs;
 		this.threadNumber = threadNumber;
-		}
-		else {throw new Exception("result set is empty/null");}
+		//}
+		//else {throw new Exception("result set is empty/null");}
 	}
 	
+
 	public ResultSet getResultSet(){
 		
 		return rs;
 		
 	}
 	
-	public int getOwnerThread(){
+
+	public long getOwnerThread(){
 		
 		return threadNumber;
 		
 	}
+
 	
 }

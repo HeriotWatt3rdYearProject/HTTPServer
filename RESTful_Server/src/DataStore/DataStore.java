@@ -10,7 +10,7 @@ import java.util.concurrent.*;
 /**
  * @author  lewismclean
  */
-public class DataStore {
+public class DataStore  {
 	/**
 	 * @uml.property  name="requestQueue"
 	 * @uml.associationEnd  multiplicity="(0 -1)" elementType="DataStore.Request"
@@ -33,15 +33,18 @@ public class DataStore {
 	public DataStore() {
 	}
 
+
 	public synchronized void putRequest(Request request) {
 		requestQueue.add(request);
 		notifyAll();
 	}
 	
+
 	public synchronized void putResponse(Response response) {
 		responseQueue.add(response);
 		notifyAll();
 	}
+
 
 	public synchronized Request getRequest() {
 		notifyAll();
@@ -54,31 +57,34 @@ public class DataStore {
 		return null;
 	}
 	
-	public synchronized Request getResponse() {
+	/* (non-Javadoc)
+	 * @see DataStore.DataStoreInterface#getResponse()
+	 */
+
+	public synchronized Response getResponse() {
 		notifyAll();
 		
 		if (!responseQueue.isEmpty()) {
 			
-			return (Request) responseQueue.poll();
+			return (Response) responseQueue.poll();
 			
 		}
 		return null;
 	}
 	
-	public synchronized int peekResponse() {
-		notifyAll();
+	/* (non-Javadoc)
+	 * @see DataStore.DataStoreInterface#peekResponse()
+	 */
+	
+	public synchronized long peekResponse() {
 		
-		if (!responseQueue.isEmpty()) {
-			
-			return (int) ((Response) responseQueue.peek()).getOwnerThread();
-			
-		}
-		return (Integer) null;
+		notifyAll();
+		return (long) ((Response) responseQueue.peek()).getOwnerThread();
+
 	}
 	
-	/**
-	 * @return
-	 * @uml.property  name="threadNumber"
+	/* (non-Javadoc)
+	 * @see DataStore.DataStoreInterface#getThreadNumber()
 	 */
 	public synchronized long getThreadNumber(){
 		notifyAll();

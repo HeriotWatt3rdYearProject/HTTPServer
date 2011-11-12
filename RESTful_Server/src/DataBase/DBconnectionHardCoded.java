@@ -46,7 +46,9 @@ import DataStore.DataStore;
 	        
 	      
 
-	        public DBconnectionHardCoded(){
+	        public DBconnectionHardCoded(){}
+	        
+	        public void openConnection(){
 	        	
 	        //test class just now, needs to return connection back
 	        
