@@ -55,6 +55,8 @@ public class HttpRequest implements HttpHandler {
 			//System.out.println("put request from httpHandler  = " + requestNumber);
 			
 			boolean gotResponse = false;
+			
+			//this needs to be changed, readup on notify() rather than constantly calling peekResponse(); 
 			while(!gotResponse){
 				
 				if(ds.peekResponse() == requestNumber){

@@ -1,5 +1,7 @@
 TO DO.....
 
+sort out notify() rather than each thread calling peekResponse() looking for response.
+
 Provision test database, either new normalised schema or old flat schema
 write Unit tests
 look at implementing a cache 
