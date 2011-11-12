@@ -6,6 +6,8 @@ import java.util.concurrent.Executors;
 import DataBase.DatabaseBoss;
 import DataStore.DataStore;
 
+import Tools.LogWriter;
+
 import com.sun.net.httpserver.HttpServer;
 
 //this is the main thread called by the main.class and spawns the other threads. 
@@ -16,21 +18,11 @@ import com.sun.net.httpserver.HttpServer;
  */
 public class HttpRESTfulServer extends Thread {
 
-	/**
-	 * @uml.property  name="dataStore"
-	 * @uml.associationEnd  multiplicity="(1 1)"
-	 */
+
 	private final DataStore dataStore;
-	/**
-	 * @uml.property  name="server"
-	 * @uml.associationEnd  multiplicity="(1 1)"
-	 */
-	HttpServer server;
-	/**
-	 * @uml.property  name="dBWorker"
-	 * @uml.associationEnd  multiplicity="(1 1)"
-	 */
-	DatabaseBoss dBWorker;
+	private HttpServer server;
+	private DatabaseBoss dBWorker;
+	private LogWriter log;
 
 	public HttpRESTfulServer() throws IOException {
 

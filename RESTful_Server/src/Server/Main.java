@@ -2,6 +2,8 @@ package Server;
 
 import java.io.IOException;
 
+import Tools.SendMail;
+
 //needs no introduction...
 
 public class Main {
@@ -16,7 +18,7 @@ public class Main {
 			boss = new HttpRESTfulServer();
 			boss.start();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			SendMail sm = new SendMail(args[0],"API problem, exception caught but shutting down. Exception = "  + e.getMessage());
 			e.printStackTrace();
 		}
 	
