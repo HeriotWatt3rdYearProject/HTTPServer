@@ -1,6 +1,7 @@
 TO DO.....
 
 sort out notify() rather than each thread calling peekResponse() looking for response.
+look at a connection pool to limit number of DB connections available
 
 Provision test database, either new normalised schema or old flat schema
 write Unit tests

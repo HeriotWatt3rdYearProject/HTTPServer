@@ -25,6 +25,7 @@ public class DatabaseWorker extends Thread {
 		
 	}
 	
+	
 	public void run(){
 		
 		
@@ -46,6 +47,7 @@ public class DatabaseWorker extends Thread {
 		ds.putResponse(resp);
 		//System.out.println("put response from dbworker  = " + owner +"  "+this.getId());
 	
+		this.stop();
 	}
 	
 }

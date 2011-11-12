@@ -36,18 +36,18 @@ public class DataStore  {
 
 	public synchronized void putRequest(Request request) {
 		requestQueue.add(request);
-		notifyAll();
+		//notifyAll();
 	}
 	
 
 	public synchronized void putResponse(Response response) {
 		responseQueue.add(response);
-		notifyAll();
+		//notify();
 	}
 
 
 	public synchronized Request getRequest() {
-		notifyAll();
+		//notifyAll();
 		
 		if (!requestQueue.isEmpty()) {
 			
@@ -62,7 +62,7 @@ public class DataStore  {
 	 */
 
 	public synchronized Response getResponse() {
-		notifyAll();
+		//notifyAll();
 		
 		if (!responseQueue.isEmpty()) {
 			
@@ -90,7 +90,7 @@ public class DataStore  {
 	 * @see DataStore.DataStoreInterface#getThreadNumber()
 	 */
 	public synchronized long getThreadNumber(){
-		notifyAll();
+		//notifyAll();
 		threadNumber++;
 		return threadNumber;
 		

@@ -19,7 +19,7 @@ import com.sun.net.httpserver.HttpHandler;
 /**
  * @author  lewismclean
  */
-public class HttpRequest implements HttpHandler {
+public class HttpRequest implements HttpHandler  {
 
 
 	private DataStore ds;
@@ -32,6 +32,8 @@ public class HttpRequest implements HttpHandler {
 
 	public void handle(HttpExchange exchange) throws IOException {
 
+		
+		
 		long requestNumber = ds.getThreadNumber(); 
 		
 		long startTime = System.currentTimeMillis();
@@ -57,7 +59,19 @@ public class HttpRequest implements HttpHandler {
 			boolean gotResponse = false;
 			
 			//this needs to be changed, readup on notify() rather than constantly calling peekResponse(); 
+
+			
 			while(!gotResponse){
+				
+				
+				//WORK GOD DAMMIT !!
+/*				try {
+					wait();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}*/
+				
 				
 				if(ds.peekResponse() == requestNumber){
 					
@@ -65,7 +79,7 @@ public class HttpRequest implements HttpHandler {
 					
 					Response resp = ds.getResponse();
 					gotResponse = true;
-					System.out.println("Got response from DBworker  = " + requestNumber + "Response time = " + ((endTime - startTime)/1000));
+					System.out.println("Got response from DBworker  = " + requestNumber + "Response time = " + ((endTime - startTime)));
 					s=Long.toString(requestNumber);
 					
 				}
