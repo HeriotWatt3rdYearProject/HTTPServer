@@ -3,7 +3,7 @@ package Server;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.util.concurrent.Executors;
-import DataBase.DatabaseWorker;
+import DataBase.DatabaseBoss;
 import DataStore.DataStore;
 
 import com.sun.net.httpserver.HttpServer;
@@ -30,16 +30,16 @@ public class HttpRESTfulServer extends Thread {
 	 * @uml.property  name="dBWorker"
 	 * @uml.associationEnd  multiplicity="(1 1)"
 	 */
-	DatabaseWorker dBWorker;
+	DatabaseBoss dBWorker;
 
 	public HttpRESTfulServer() throws IOException {
 
 		dataStore = new DataStore();
 		InetSocketAddress addr = new InetSocketAddress(8080);
 		server = HttpServer.create(addr, 0);
-		server.createContext("/", new HTTPHandler(dataStore));
+		server.createContext("/", new HttpRequest(dataStore));
 		server.setExecutor(Executors.newCachedThreadPool());
-		dBWorker = new DatabaseWorker(dataStore);
+		dBWorker = new DatabaseBoss(dataStore);
 		
 	}
 	

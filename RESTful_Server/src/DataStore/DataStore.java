@@ -78,9 +78,12 @@ public class DataStore  {
 	
 	public synchronized long peekResponse() {
 		
-		notifyAll();
-		return (long) ((Response) responseQueue.peek()).getOwnerThread();
 
+		notifyAll();
+		if(!responseQueue.isEmpty()){
+		return (long) ((Response) responseQueue.peek()).getOwnerThread();
+		}
+		else{return -1;}
 	}
 	
 	/* (non-Javadoc)

@@ -10,7 +10,7 @@ import java.util.concurrent.Executors;
 import org.junit.Test;
 
 import DataBase.DBconnectionHardCoded;
-import Server.HTTPHandler;
+import Server.HttpRequest;
 import Tools.URLFetcher;
 
 import com.sun.net.httpserver.HttpServer;
@@ -26,7 +26,7 @@ public class TestServer {
 		InetSocketAddress addr = new InetSocketAddress(8080);
 	    HttpServer server = HttpServer.create(addr, 0);
 
-	    server.createContext("/", new HTTPHandler());
+	    server.createContext("/", new HttpRequest());
 	    server.setExecutor(Executors.newCachedThreadPool());
 	    server.start();
 	   

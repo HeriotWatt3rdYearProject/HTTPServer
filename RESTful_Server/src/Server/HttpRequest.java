@@ -19,12 +19,12 @@ import com.sun.net.httpserver.HttpHandler;
 /**
  * @author  lewismclean
  */
-public class HTTPHandler implements HttpHandler {
+public class HttpRequest implements HttpHandler {
 
 
 	private DataStore ds;
 
-	public HTTPHandler(DataStore ds) {
+	public HttpRequest(DataStore ds) {
 
 		//this needs to be tested
 		this.ds = ds;
@@ -50,6 +50,7 @@ public class HTTPHandler implements HttpHandler {
 		if (parseResult instanceof Request) {
 
 			ds.putRequest((Request)parseResult);
+			System.out.println("put request from httpHandler  = " + requestNumber);
 			
 			boolean gotResponse = false;
 			while(!gotResponse){
@@ -58,7 +59,9 @@ public class HTTPHandler implements HttpHandler {
 					
 					Response resp = ds.getResponse();
 					gotResponse = true;
-
+					System.out.println("Got response from DBworker  = " + requestNumber);
+					s=Long.toString(requestNumber);
+					
 				}
 				
 			}
@@ -66,24 +69,16 @@ public class HTTPHandler implements HttpHandler {
 			
 		}
 
-		System.out.println(request + "   " + requestMethod + "    " + str);
-
-		//send request to syncronised data store with thread number.
-		//
-		//
-		//
-		
-		
 		
 		
 		// return request part - REFACTOR to method with args..
 		if (requestMethod.equalsIgnoreCase("GET")) {
-			Headers responseHeaders = exchange.getResponseHeaders();
-			responseHeaders.set("Content-Type", "text/plain");
-			exchange.sendResponseHeaders(200, 0);
-
+//			Headers responseHeaders = exchange.getResponseHeaders();
+//			responseHeaders.set("Content-Type", "text/plain");
+//			exchange.sendResponseHeaders(200, 0);
+//
 			OutputStream responseBody = exchange.getResponseBody();
-			Headers requestHeaders = exchange.getRequestHeaders();
+//			Headers requestHeaders = exchange.getRequestHeaders();
 
 			responseBody.write(s.getBytes());
 

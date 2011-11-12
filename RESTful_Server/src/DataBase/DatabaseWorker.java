@@ -1,70 +1,51 @@
 package DataBase;
 
 import java.sql.ResultSet;
+import java.util.Random;
+
+import com.mysql.jdbc.Connection;
 
 import DataStore.DataStore;
 import DataStore.Request;
 import DataStore.Response;
 
 
-
-//Class to handle the Database side of the API, threaded to allow it to run independently of the http server
-//Uses the final syncronised Datastore class
-
-/**
- * @author  lewismclean
- */
 public class DatabaseWorker extends Thread {
-	
-	/**
-	 * @uml.property  name="ds"
-	 * @uml.associationEnd  multiplicity="(1 1)"
-	 */
-	DataStore ds;
-	/**
-	 * @uml.property  name="dbConn"
-	 * @uml.associationEnd  multiplicity="(1 1)"
-	 */
-	DBconnectionHardCoded dbConn;
 
-	public DatabaseWorker(DataStore ds){
+	private DataStore ds;
+	private Connection conn;
+	private Request req;
+	
+	public DatabaseWorker(DataStore ds, Request req, Connection conn){
 		
+		this.conn = conn;
+		this.req = req;
 		this.ds = ds;
-		dbConn = new DBconnectionHardCoded();
+		
 		
 	}
+	
+	public void run(){
+		
+		
+		//simulate the SQL running at different speeds
+		Random rand = new Random();
+		long owner = req.getRequestNumber();
+		
+		System.out.println("got request from httpHandler  = " + owner +"  "+this.getId());
+		
+		try {
+			Thread.sleep(rand.nextInt(5000));
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		ResultSet rs = null;
 
-    public void run(){
-    	
-    	while(true){
-    		
-    		Request currentRequest = ds.getRequest();
-    		
-    		if(currentRequest!=null){
-    			
-    			long owner = currentRequest.getRequestNumber();
-    			
-    			try {
-					Thread.sleep(1000);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-    			ResultSet rs = null;
-    	
-				Response resp = new Response(rs, owner);
-				ds.putResponse(resp);
-    			
-    		}
-    		
-    		//do database query
-    		
-    		
-    		//then
-    		//ds.putResponse(response);
-    		
-    	}
-    	
-    }
-
+		Response resp = new Response(rs, owner);
+		ds.putResponse(resp);
+		System.out.println("put response from dbworker  = " + owner +"  "+this.getId());
+	
+	}
+	
 }
