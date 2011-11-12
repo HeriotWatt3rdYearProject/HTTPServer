@@ -5,9 +5,18 @@ import java.sql.ResultSet;
 //wrapper class for the response, may look at formating the result before sending back to HTTP
 //perhaps write a formatting tool class
 
+/**
+ * @author  lewismclean
+ */
 public class Response {
 
+	/**
+	 * @uml.property  name="rs"
+	 */
 	private ResultSet rs;
+	/**
+	 * @uml.property  name="threadNumber"
+	 */
 	private int threadNumber;
 	
 	public Response(ResultSet rs, int threadNumber) throws Exception{

@@ -13,8 +13,15 @@ import com.sun.net.httpserver.HttpHandler;
 //with the others when I test.
 //Need to refactor the methods into a smaller methods.
 
+/**
+ * @author  lewismclean
+ */
 public class HTTPHandler implements HttpHandler {
 
+	/**
+	 * @uml.property  name="ds"
+	 * @uml.associationEnd  multiplicity="(1 1)"
+	 */
 	private DataStore ds;
 
 	public HTTPHandler(DataStore ds) {

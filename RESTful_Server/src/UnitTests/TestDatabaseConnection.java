@@ -6,8 +6,15 @@ import org.junit.Test;
 
 import DataBase.DBconnectionHardCoded;
 
+/**
+ * @author  lewismclean
+ */
 public class TestDatabaseConnection {
 
+	/**
+	 * @uml.property  name="dBConn"
+	 * @uml.associationEnd  
+	 */
 	DBconnectionHardCoded dBConn;
 	
 	@Test

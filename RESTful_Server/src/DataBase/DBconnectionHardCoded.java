@@ -10,17 +10,38 @@ import DataStore.DataStore;
 //Test class to check connection to DB, runs simple query and throws exception.
 //Needs a serious re-factor once finished and tested the current system
 
+	/**
+	 * @author  lewismclean
+	 */
 	public class DBconnectionHardCoded {
 
 
+	        /**
+			 * @uml.property  name="con"
+			 */
 	        Connection con = null;
+	        /**
+			 * @uml.property  name="st"
+			 */
 	        Statement st = null;
+	        /**
+			 * @uml.property  name="rs"
+			 */
 	        ResultSet rs = null;
 
 	        // pass connection string via text file or XML config file
 	        
+	        /**
+			 * @uml.property  name="url"
+			 */
 	        String url = "jdbc:mysql://******:3306/mysql";
+	        /**
+			 * @uml.property  name="user"
+			 */
 	        String user = "JavaApp";
+	        /**
+			 * @uml.property  name="password"
+			 */
 	        String password = "JavaApp";
 	        
 	      

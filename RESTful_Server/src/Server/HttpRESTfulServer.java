@@ -9,10 +9,25 @@ import com.sun.net.httpserver.HttpServer;
 //this is the main thread called by the main.class and spawns the other threads. 
 //creates the top level datastore class
 
+/**
+ * @author  lewismclean
+ */
 public class HttpRESTfulServer extends Thread {
 
+	/**
+	 * @uml.property  name="dataStore"
+	 * @uml.associationEnd  multiplicity="(1 1)"
+	 */
 	private final DataStore.DataStore dataStore;
+	/**
+	 * @uml.property  name="server"
+	 * @uml.associationEnd  multiplicity="(1 1)"
+	 */
 	HttpServer server;
+	/**
+	 * @uml.property  name="dBWorker"
+	 * @uml.associationEnd  multiplicity="(1 1)"
+	 */
 	DatabaseWorker dBWorker;
 
 	public HttpRESTfulServer() throws IOException {

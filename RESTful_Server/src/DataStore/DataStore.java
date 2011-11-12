@@ -7,10 +7,27 @@ import java.util.concurrent.*;
 //of the queues to ensure timely response. Might be an Idea to create a cache too.
 //!! NEEDS TESTED !!
 
+/**
+ * @author  lewismclean
+ */
 public class DataStore {
+	/**
+	 * @uml.property  name="requestQueue"
+	 * @uml.associationEnd  multiplicity="(0 -1)" elementType="DataStore.Request"
+	 */
 	private Queue requestQueue = new ConcurrentLinkedQueue();
+	/**
+	 * @uml.property  name="responseQueue"
+	 * @uml.associationEnd  multiplicity="(0 -1)" elementType="DataStore.Response"
+	 */
 	private Queue responseQueue = new ConcurrentLinkedQueue();
+	/**
+	 * @uml.property  name="available"
+	 */
 	private boolean available = false;
+	/**
+	 * @uml.property  name="threadNumber"
+	 */
 	private long threadNumber = 0;
 
 	public DataStore() {
@@ -59,6 +76,10 @@ public class DataStore {
 		return (Integer) null;
 	}
 	
+	/**
+	 * @return
+	 * @uml.property  name="threadNumber"
+	 */
 	public synchronized long getThreadNumber(){
 		notifyAll();
 		threadNumber++;
