@@ -15,55 +15,38 @@ import DataStore.DataStore;
 	 */
 	public class DBconnectionHardCoded {
 
-
-	        /**
-			 * @uml.property  name="con"
-			 */
 	        Connection con = null;
-	        /**
-			 * @uml.property  name="st"
-			 */
+
 	        Statement st = null;
-	        /**
-			 * @uml.property  name="rs"
-			 */
+
 	        ResultSet rs = null;
 
 	        // pass connection string via text file or XML config file
-	        
-	        /**
-			 * @uml.property  name="url"
-			 */
+
 	        String url = "jdbc:mysql://******:3306/mysql";
-	        /**
-			 * @uml.property  name="user"
-			 */
+
 	        String user = "JavaApp";
-	        /**
-			 * @uml.property  name="password"
-			 */
+
 	        String password = "JavaApp";
 	        
-	      
-
 	        public DBconnectionHardCoded(){}
 	        
-	        public void openConnection(){
+	        public Connection openConnection(){
 	        	
 	        //test class just now, needs to return connection back
 	        
 	        try {
 	            con = DriverManager.getConnection(url, user, password);
-	            st = con.createStatement();
-	            rs = st.executeQuery("SELECT VERSION()");
+	            //st = con.createStatement();
+	            //rs = st.executeQuery("SELECT VERSION()");
 
-	            if (rs.next()) {
-	                System.out.println(rs.getString(1));
-	            }
+	            return con;
+	           
 
 	        } catch (SQLException ex) {
 	           System.out.println("issue connecting to DB - exception thrown at connection string");
-
+	           return null;
+	           
 	        }
 	        }
 
