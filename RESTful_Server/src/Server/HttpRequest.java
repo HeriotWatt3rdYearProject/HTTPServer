@@ -81,7 +81,7 @@ public class HttpRequest implements HttpHandler  {
 					gotResponse = true;
 					System.out.println("Got response from DBworker  = " + requestNumber + "Response time = " + ((endTime - startTime)));
 					s=Long.toString(requestNumber);
-					s+=  " Papa got a brand new bag in "+ ((endTime - startTime));
+					
 				}
 				
 			}
@@ -93,13 +93,13 @@ public class HttpRequest implements HttpHandler  {
 		
 		// return request part - REFACTOR to method with args..
 		if (requestMethod.equalsIgnoreCase("GET")) {
-			Headers responseHeaders = exchange.getResponseHeaders();
-			responseHeaders.set("Content-Type", "text/plain");
-			exchange.sendResponseHeaders(200, 0);
-
+//			Headers responseHeaders = exchange.getResponseHeaders();
+//			responseHeaders.set("Content-Type", "text/plain");
+//			exchange.sendResponseHeaders(200, 0);
+//
 			OutputStream responseBody = exchange.getResponseBody();
-			Headers requestHeaders = exchange.getRequestHeaders();
-			System.out.println(s);
+//			Headers requestHeaders = exchange.getRequestHeaders();
+
 			responseBody.write(s.getBytes());
 
 			responseBody.close();
