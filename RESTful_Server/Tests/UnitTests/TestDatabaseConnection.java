@@ -2,7 +2,11 @@ package UnitTests;
 
 import static org.junit.Assert.*;
 
+import java.sql.Connection;
+
 import org.junit.Test;
+
+
 
 import DataBase.DBconnectionHardCoded;
 
@@ -22,6 +26,7 @@ public class TestDatabaseConnection {
 		
 		try{
 		dBConn = new DBconnectionHardCoded();
+		Connection temp =  dBConn.openConnection();
 		}
 		catch(Exception e){
 			fail("Couldn't open the database connection");

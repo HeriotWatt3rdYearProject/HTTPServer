@@ -1,10 +1,9 @@
 package DataBase;
 	import java.sql.Connection;
-	import java.sql.DriverManager;
+import java.sql.DriverManager;
 	import java.sql.ResultSet;
 	import java.sql.SQLException;
 import java.sql.Statement;
-
 import DataStore.DataStore;
 
 //Test class to check connection to DB, runs simple query and throws exception.
@@ -17,49 +16,32 @@ import DataStore.DataStore;
 
 	        Connection con = null;
 
-	        Statement st = null;
-
-	        ResultSet rs = null;
-
-	        // pass connection string via text file or XML config file
-
-	        String url = "jdbc:mysql://******:3306/mysql";
-
-	        String user = "JavaApp";
-
-	        String password = "JavaApp";
-	        
 	        public DBconnectionHardCoded(){}
 	        
-	        public Connection openConnection(){
+	        public void openConnection() throws Exception{
 	        	
 	        //test class just now, needs to return connection back
 	        
-	        try {
-	            con = DriverManager.getConnection(url, user, password);
-	            //st = con.createStatement();
-	            //rs = st.executeQuery("SELECT VERSION()");
 
-	            return con;
-	           
+	        	      Class.forName("com.mysql.jdbc.Driver").newInstance();
+	        	       con = DriverManager.getConnection("jdbc:mysql://172.16.54.129:3306",
+	        	        "java", "java");
 
-	        } catch (SQLException ex) {
-	           System.out.println("issue connecting to DB - exception thrown at connection string");
-	           return null;
-	           
 	        }
+	        
+	        public ResultSet executeQuery(String query) throws SQLException{
+	        	
+	        	   Statement s = con.createStatement ();
+	        	   s.executeQuery (query);
+	        	   return s.getResultSet ();
+	        	
 	        }
 
 	        public boolean closeConnection(){
 	            
 	        	try {
-	                if (rs != null) {
-	                    rs.close();
-	                }
-	                if (st != null) {
-	                    st.close();
-	                }
-	                if (con != null) {
+
+	                if (!con.isClosed()) {
 	                    con.close();
 	                }
 

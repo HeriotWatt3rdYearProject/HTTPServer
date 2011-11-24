@@ -99,7 +99,7 @@ public class HttpRequest implements HttpHandler  {
 
 			OutputStream responseBody = exchange.getResponseBody();
 			Headers requestHeaders = exchange.getRequestHeaders();
-			System.out.println(s);
+			//System.out.println(s);
 			responseBody.write(s.getBytes());
 
 			responseBody.close();
